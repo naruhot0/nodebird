@@ -20,7 +20,10 @@ router.get('/join', (req, res) => {
 
 router.get('/', (req, res, next) => {
     const twits = [];
-    res.render('main',{ title: 'NodeBird', twits});
+    res.render('main',{
+         title: 'NodeBird',
+          twits,
+    });
 });
 
 module.exports = router;

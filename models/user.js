@@ -4,28 +4,28 @@ module.exports = class User extends Sequelize.Model {
     static init(Sequelize){
         return super.init({
             email: {
-                type: Sequelize.String(40),
+                type: Sequelize.STRING(40),
                 allowNull: true,
-                unique: true
+                unique: true,
             },
             nick: {
-                type: Sequelize.String(15),
+                type: Sequelize.STRING(15),
                 allowNull: false,
             },
             password: {
-                type: Sequelize.String(100),
+                type: Sequelize.STRING(100),
                 allowNull: true,
             },
             provider: {
-                type: Sequelize.String(10),
+                type: Sequelize.STRING(10),
                 allowNull: false,
                 defaultValue:'local',
             },
             snsId: {
-                type: Sequelize.String(30),
+                type: Sequelize.STRING(30),
                 allowNull: true,
             },
-        },{
+        }, {
             sequelize,
             timestamps: true,
             underscored: false,
@@ -36,18 +36,18 @@ module.exports = class User extends Sequelize.Model {
             collate: 'utf8_general_ci',
         });
     }
-    static associate(db){
+
+    static associate(db) {
         db.User.hasMany(db.Post);
-        db.User.belongsToMany(db.User, {
+        db.User.belongsToMany(db.User,{
             foreignKey: 'followingId',
             as: 'Followers',
             through: 'Follow',
         });
-        db.User.belongsToMany(db.User, {
+        db.User.belongsToMany(db.User,{
             foreignKey: 'followerId',
             as: 'Followings',
             through: 'Follow',
         });
-
     }
 };
