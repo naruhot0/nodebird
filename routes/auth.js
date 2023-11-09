@@ -45,6 +45,7 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
   })(req, res, next); // 미들웨어 내의 미들웨어에는 (req, res, next)를 붙입니다.
 });
 
+// passport의 로그아웃이 비동기 함수가 되어서 아래와 같이 짜야한다.
 router.get('/logout', isLoggedIn, (req, res, next) => {
   req.logout(err => {
     if(err){
