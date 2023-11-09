@@ -21,11 +21,11 @@ app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
-app.use(cookieParser(process.env.COOKEI_CECRET));
+app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(session({
     resave: false,
     saveUninitialized: false,
-    secret: process.env.COOKEI_CECRET,
+    secret: process.env.COOKIE_SECRET,
     cookie:{
         httpOnly: true,
         secure: false,
@@ -40,7 +40,7 @@ app.use((req, res, next) => {
     next(error);
 });
 
-app.use((err, rep, res, next) => {
+app.use((err, req, res, next) => {
     res.locals.message = err.message;
     res.locals.error = process.env.NODE_ENV !== 'production' ? err : {};
     res.status(err.status || 500);

@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": null,
-    "database": "database_development",
+    "database": "nodebird",
     "host": "172.25.69.51",
     "dialect": "mysql"
   },
